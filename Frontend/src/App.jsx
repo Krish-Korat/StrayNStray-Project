@@ -54,6 +54,8 @@ export default function App() {
         return <ContactPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'hotelReservation':
         return <HotelReservationPage navigateTo={navigateTo} user={user} onLogout={handleLogout} hotel={pageContext} />;
+      case 'press':
+        return <PressPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'flights':
         return <FlightsPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'travelerDetails':
@@ -990,7 +992,7 @@ const Footer = ({navigateTo}) => (
                     <ul className="mt-4 space-y-2 text-gray-400">
                         <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('about'); }} className="hover:text-white">About Us</a></li>
                         <li><a href="#" className="hover:text-white">Careers</a></li>
-                        <li><a href="#" className="hover:text-white">Press</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('press'); }} className="hover:text-white">Press </a></li>
                     </ul>
                 </div>
                 <div>
@@ -1066,6 +1068,66 @@ const ContactPage = ({ navigateTo, user, onLogout }) => (
     <Footer navigateTo={navigateTo} />
   </div>
 );
+
+const PressPage = ({ navigateTo, user, onLogout }) => (
+  <div className="flex flex-col min-h-screen bg-gray-50">
+    <Header navigateTo={navigateTo} user={user} onLogout={onLogout} />
+
+    <main className="flex-grow container mx-auto px-6 py-16 text-center">
+      <h1 className="text-44xl font-bold text-blue-600 mb-8">StayNStray in the News</h1>
+      <p className="text-gray-700 max-w-3xl mx-auto mb-10 leading-relaxed">
+        StayNStray has been featured in various news outlets for its mission to make travel 
+        more accessible and animal-friendly. Explore our latest media coverage and announcements below.
+      </p>
+
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white shadow-md rounded-lg p-6">
+          <h3 className="text-xl font-semibold mb-2 text-gray-800">
+            🗞️ StayNStray Partners with PawCare NGO
+          </h3>
+          <p className="text-gray-600 text-sm">
+            StayNStray has teamed up with PawCare to promote responsible pet-friendly travel options 
+            and accommodation across India.
+          </p>
+          <p className="text-sm text-gray-500 mt-3">Published on June 10, 2025</p>
+        </div>
+
+        <div className="bg-white shadow-md rounded-lg p-6">
+          <h3 className="text-xl font-semibold mb-2 text-gray-800">
+            🌍 Featured in Travel Today Magazine
+          </h3>
+          <p className="text-gray-600 text-sm">
+            Our innovative booking system that connects travelers with sustainable stays 
+            was highlighted in Travel Today’s “Tech for Good” feature.
+          </p>
+          <p className="text-sm text-gray-500 mt-3">Published on May 18, 2025</p>
+        </div>
+
+        <div className="bg-white shadow-md rounded-lg p-6">
+          <h3 className="text-xl font-semibold mb-2 text-gray-800">
+            💡 StayNStray Launches Volunteer Travel Program
+          </h3>
+          <p className="text-gray-600 text-sm">
+            A new initiative lets travelers volunteer with local animal shelters while exploring 
+            new destinations.
+          </p>
+          <p className="text-sm text-gray-500 mt-3">Published on April 3, 2025</p>
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Press Inquiries</h2>
+        <p className="text-gray-700">
+          For interviews or media coverage, please reach out to us at:  
+          <span className="text-blue-600 font-medium"> press@staynstray.com </span>
+        </p>
+      </section>
+    </main>
+
+    <Footer navigateTo={navigateTo} />
+  </div>
+);
+
 
 const FormInput = ({ label, name, type = 'text', value, onChange, required, className, placeholder }) => (
     <div className={`text-gray-700 ${className}`}>
