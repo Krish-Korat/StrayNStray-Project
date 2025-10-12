@@ -56,6 +56,8 @@ export default function App() {
         return <ContactPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'hotelReservation':
         return <HotelReservationPage navigateTo={navigateTo} user={user} onLogout={handleLogout} hotel={pageContext} />;
+      case 'help':
+        return <HelpCenterPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'press':
         return <PressPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'flights':
@@ -1000,7 +1002,7 @@ const Footer = ({navigateTo}) => (
                 <div>
                      <h3 className="font-bold uppercase tracking-wider">Support</h3>
                     <ul className="mt-4 space-y-2 text-gray-400">
-                        <li><a href="#" className="hover:text-white">Help Center</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('help'); }} className="hover:text-white">Help Center </a></li>
                         <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('contact'); }} className="hover:text-white">Contact Us</a></li>
                         <li><a href="#" className="hover:text-white">Safety</a></li>
                     </ul>
@@ -1155,6 +1157,50 @@ const CareersPage = ({ navigateTo, user, onLogout }) => (
             </button>
           </div>
         ))}
+      </div>
+    </main>
+    <Footer navigateTo={navigateTo} />
+  </div>
+);
+
+const HelpCenterPage = ({ navigateTo, user, onLogout }) => (
+  <div className="flex flex-col min-h-screen bg-gray-50">
+    <Header navigateTo={navigateTo} user={user} onLogout={onLogout} />
+    <main className="flex-grow container mx-auto px-6 py-16">
+      <h1 className="text-4xl font-bold text-blue-600 mb-6 text-center">
+        Help Center
+      </h1>
+      <p className="text-gray-700 mb-10 text-center">
+        Need assistance? You’re in the right place! Explore common FAQs, find helpful guides,
+        or reach out to our support team for personalized help.
+      </p>
+
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition">
+          <h2 className="text-2xl font-semibold text-blue-600 mb-2">Booking & Payments</h2>
+          <p className="text-gray-600 mb-4">
+            Learn how to manage bookings, process refunds, and handle payment issues.
+          </p>
+          <button
+            onClick={() => navigateTo("contact")}
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          >
+            Contact Support
+          </button>
+        </div>
+
+        <div className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition">
+          <h2 className="text-2xl font-semibold text-blue-600 mb-2">Account & Profile</h2>
+          <p className="text-gray-600 mb-4">
+            Need help updating your profile or managing login issues? We’ve got you covered.
+          </p>
+          <button
+            onClick={() => navigateTo("contact")}
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+          >
+            Get Help
+          </button>
+        </div>
       </div>
     </main>
     <Footer navigateTo={navigateTo} />
