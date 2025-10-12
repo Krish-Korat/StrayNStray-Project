@@ -48,6 +48,8 @@ export default function App() {
         return <AuthPage navigateTo={navigateTo} onLoginSuccess={handleLoginSuccess} />;
       case 'hotels':
         return <HotelsPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
+      case 'careers':
+        return <CareersPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'about':
         return <AboutPage navigateTo={navigateTo} user={user} onLogout={handleLogout} />;
       case 'contact':
@@ -991,7 +993,7 @@ const Footer = ({navigateTo}) => (
                     <h3 className="font-bold uppercase tracking-wider">Company</h3>
                     <ul className="mt-4 space-y-2 text-gray-400">
                         <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('about'); }} className="hover:text-white">About Us</a></li>
-                        <li><a href="#" className="hover:text-white">Careers</a></li>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('careers'); }} className="hover:text-white">Careers </a></li>
                         <li><a href="#" onClick={(e) => { e.preventDefault(); navigateTo('press'); }} className="hover:text-white">Press </a></li>
                     </ul>
                 </div>
@@ -1124,6 +1126,37 @@ const PressPage = ({ navigateTo, user, onLogout }) => (
       </section>
     </main>
 
+    <Footer navigateTo={navigateTo} />
+  </div>
+);
+
+const CareersPage = ({ navigateTo, user, onLogout }) => (
+  <div className="flex flex-col min-h-screen bg-gray-50">
+    <Header navigateTo={navigateTo} user={user} onLogout={onLogout} />
+    <main className="flex-grow container mx-auto px-6 py-16 text-center">
+      <h1 className="text-4xl font-bold text-blue-600 mb-6">Careers at StrayNStray</h1>
+      <p className="text-gray-700 mb-10">
+        We're always looking for passionate, creative, and dedicated people to join our team.  
+        Explore our current openings and grow with us!
+      </p>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        {[
+          { title: "Frontend Developer", location: "Remote", type: "Full-Time" },
+          { title: "Backend Developer", location: "Pune, India", type: "Full-Time" },
+          { title: "UI/UX Designer", location: "Remote", type: "Contract" },
+        ].map((job, index) => (
+          <div key={index} className="bg-white shadow-lg rounded-xl p-6 text-left hover:shadow-xl transition">
+            <h2 className="text-2xl font-semibold text-blue-600 mb-2">{job.title}</h2>
+            <p className="text-gray-600 mb-1"><strong>Location:</strong> {job.location}</p>
+            <p className="text-gray-600 mb-4"><strong>Type:</strong> {job.type}</p>
+            <button className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">
+              Apply Now
+            </button>
+          </div>
+        ))}
+      </div>
+    </main>
     <Footer navigateTo={navigateTo} />
   </div>
 );
